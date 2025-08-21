@@ -3,12 +3,16 @@ Class FHIRServerRepo.HSFiles.Logs Extends %CSP.Page
 
 Parameter Title As STRING = "FHIRServer Logs";
 
+Parameter LogFileExt As STRING = "HS.Util.Installer*.log";
+
 ClassMethod OnPage() As %Status
 {
+	
 	Write "<html><head>"
 	write "<img class=""portalLogo"" src=""portal/InterSystems IRIS.png"">"
     Write "<style>"
-    Write "body{font-family:'Segoe UI',Tahoma,Geneva,Verdana,sans-serif;background:#f4f7fb;color:#333;margin:0;padding:0;}.container{max-width:800px;margin:50px auto;padding:20px;}h2{text-align:center;margin-bottom:20px;color:#222;}.logo{display:block;margin:0 auto 30px;max-width:220px;}.log-list{list-style:none;padding:0;}.log-item{background:white;margin-bottom:12px;border-radius:8px;padding:15px 20px;box-shadow:0 2px 6px rgba(0,0,0,0.07);transition:transform 0.2s,box-shadow 0.2s;display:flex;align-items:center;}.log-item:hover{transform:translateY(-2px);box-shadow:0 6px 15px rgba(0,0,0,0.1);}.log-item i{color:#2b7de9;margin-right:12px;font-size:18px;}.log-item a{text-decoration:none;color:#2b7de9;font-weight:500;font-size:16px;flex-grow:1;}.log-item a:hover{text-decoration:underline;}@media (max-width:600px){.log-item{padding:12px 15px;}.log-item a{font-size:15px;}}"
+    //Write "body{font-family:'Segoe UI',Tahoma,Geneva,Verdana,sans-serif;background:#f4f7fb;color:#333;margin:0;padding:0;}.container{max-width:800px;margin:50px auto;padding:20px;}h2{text-align:center;margin-bottom:20px;color:#222;}.logo{display:block;margin:0 auto 30px;max-width:220px;}.log-list{list-style:none;padding:0;}.log-item{background:white;margin-bottom:12px;border-radius:8px;padding:15px 20px;box-shadow:0 2px 6px rgba(0,0,0,0.07);transition:transform 0.2s,box-shadow 0.2s;display:flex;align-items:center;}.log-item:hover{transform:translateY(-2px);box-shadow:0 6px 15px rgba(0,0,0,0.1);}.log-item i{color:#2b7de9;margin-right:12px;font-size:18px;}.log-item a{text-decoration:none;color:#2b7de9;font-weight:500;font-size:16px;flex-grow:1;}.log-item a:hover{text-decoration:underline;}@media (max-width:600px){.log-item{padding:12px 15px;}.log-item a{font-size:15px;}}"
+    Write "body{font-family:'Segoe UI',Tahoma,Geneva,Verdana,sans-serif;background:#f4f7fb;color:#333;margin:0;padding:0}.container{max-width:1000px;margin:50px auto;padding:20px}h2{text-align:center;margin-bottom:20px;color:#222}.logo{display:block;margin:0 auto 30px;max-width:220px}.log-list{list-style:none;padding:0;display:flex;flex-wrap:wrap;gap:16px;justify-content:center}.log-item{background:white;border-radius:8px;padding:15px 20px;box-shadow:0 2px 6px rgba(0,0,0,0.07);transition:transform 0.2s,box-shadow 0.2s;display:flex;align-items:center;width:48%;box-sizing:border-box}.log-item:hover{transform:translateY(-2px);box-shadow:0 6px 15px rgba(0,0,0,0.1)}.log-item i{color:#2b7de9;margin-right:12px;font-size:18px}.log-item a{text-decoration:none;color:#2b7de9;font-weight:500;font-size:16px;flex-grow:1}.log-item a:hover{text-decoration:underline}@media (max-width:768px){.log-item{width:100%}}"
     Write "</style>"
     Write "</head><body>"
     Write "<div class='container'>"
@@ -35,13 +39,14 @@ ClassMethod OnPage() As %Status
 	While rs.%Next() {
 		Set fileNames("HS.Util.Installer"_rs.namespace_"-1"_".log")=""
 	}
+	Do ..GetFilesInDirectory(.fileNames)
 	Set file=""
 	Write "<ul class=""log-list"">"
 	For {
 		Set file = $Order(fileNames(file)) Q:file=""
 		 Write "<li class=""log-item"">"
 		 Write "<i class=""fa fa-file-alt""></i>"
-		 Write "<a href='FHIRServerRepo.HSFiles.ShowFile.cls?file="_$ZCONVERT(file,"O","URL")_"' target=""_blank"">" _ file _ "</a>"
+		 Write "<a href='zaxk.HSFiles.ShowFile.cls?file="_$ZCONVERT(file,"O","URL")_"' target=""_blank"">" _ file _ "</a>"
 		 Write "</li>"
 	}
 	Write "</form>"
@@ -50,10 +55,21 @@ ClassMethod OnPage() As %Status
 	Return $$$OK
 }
 
+ClassMethod GetFilesInDirectory(ByRef files) As %Status
+{
+    Set tResult = ##class(%Library.File).FileSetFunc($system.Util.ManagerDirectory(), ..#LogFileExt)
+    While tResult.%Next() {
+	    Set files(tResult.ItemName)=""
+    }
+}
+
 ClassMethod OnPreHTTP() As %Boolean
 {
 	return $$$OK
 }
 
-
+ClassMethod OnPageHEAD() As %Boolean
+{
+	Do ..HyperEventHead(0,0)
+}
 }
