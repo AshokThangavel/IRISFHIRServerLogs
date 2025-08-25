@@ -16,6 +16,7 @@ The viewer provides a web-based interface to monitor and inspect server-side act
 - Built on InterSystems IRIS
 - Dockerized for easy deployment
 
+
 ---
 
 ## 🚀 How to Run
@@ -28,6 +29,10 @@ Then, in the root of the repository, run:
 docker compose -f 'docker-compose.yml' up -d --build
 ```
 ---
-http://localhost:52773/csp/user/FHIRServerRepo.HSFiles.Logs.cls
+http[s]:ipaddress:[port]/csppage/HSFiles.FSLog.cls
+e.g :
+http://localhost:52773/csp/user/HSFiles.FSLog.cls
+https://localhost/csp/user/HSFiles.FSLog.cls
 ----
-<img width="1919" height="824" alt="image" src="https://github.com/user-attachments/assets/66298c28-6522-4b7c-8615-08d8ba422a91" />
+<img width="1277" height="763" alt="image" src="https://github.com/user-attachments/assets/7af1698d-0917-4867-85ea-2d9be6c4c6ea" />
+
