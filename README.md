@@ -30,7 +30,7 @@ docker compose -f 'docker-compose.yml' up -d --build
 ```
 ---
 http[s]:ipaddress:[port]/csppage/HSFiles.FSLog.cls
-e.g :
+
 http://localhost:52773/csp/user/HSFiles.FSLog.cls
 https://localhost/csp/user/HSFiles.FSLog.cls
 ----
