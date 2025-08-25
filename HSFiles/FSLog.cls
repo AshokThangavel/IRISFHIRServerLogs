@@ -1,4 +1,4 @@
-Class FHIRServerRepo.FSLog Extends %CSP.Page
+Class HSFiles.FSLog Extends %CSP.Page
 {
 
 Parameter TableHeader As STRING = "Location,Type,Message,TimeStamp,jobNumber";

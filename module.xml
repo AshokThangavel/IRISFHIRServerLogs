@@ -7,7 +7,7 @@
       <Description>IrisFSRepoLog</Description>
       <Keywords>Terminal, COS</Keywords>
       <Packaging>module</Packaging>
-      <Resource Name="FHIRServerRepo.PKG"/>
+      <Resource Name="HSFiles.PKG"/>
       <LifecycleClass>%IPM.Lifecycle.Module</LifecycleClass>
     </Module>
   </Document>

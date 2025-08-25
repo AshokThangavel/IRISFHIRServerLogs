@@ -1,4 +1,4 @@
-Class FHIRServerRepo.HSFiles.ShowFile Extends %CSP.Page
+Class HSFiles.ShowFile Extends %CSP.Page
 {
 
 Parameter Title As STRING = "Log Files";
@@ -32,12 +32,12 @@ ClassMethod DisplayFile()
 	Write " <table id=""example"" class=""table table-striped"" style=""width:100%;padding: 0.1rem 0.1rem;font-size:12px;"">"
 	Write " <thead class='table-header'>"
 	Write "<tr>"
-	Write "<th style='background-color:#333695;color:white;'>Entry</th>" 
+	Write "<th style='background-color:#333695;color:white;'>Entry</th>"
 	Write "</tr>"
 	Write "<tbody>"
 	Set counter=""
 	For {
-		Set counter=$order(^||filedata(counter),1,details) quit:counter=""	
+		Set counter=$order(^||filedata(counter),1,details) quit:counter=""
 		Write "<tr>"
 		Write "<td>"_details_"</td>"
 		Write "</tr>"

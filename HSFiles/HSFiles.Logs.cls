@@ -1,4 +1,4 @@
-Class FHIRServerRepo.HSFiles.Logs Extends %CSP.Page
+Class HSFiles.Logs Extends %CSP.Page
 {
 
 Parameter Title As STRING = "FHIRServer Logs";
