@@ -42,11 +42,16 @@ ClassMethod OnPage() As %Status
 	Do ..GetFilesInDirectory(.fileNames)
 	Set file=""
 	Write "<ul class=""log-list"">"
+	Write "<ul class=""log-list"">"
+	Write "<li class=""log-item"">"
+	Write "<i class=""fa fa-file-alt""></i>"
+	Write "<a href='HSFiles.FSLog.cls' target=""_blank"">FSLogs(^FSLOG)</a>"
+	Write "</li>"
 	For {
 		Set file = $Order(fileNames(file)) Q:file=""
 		 Write "<li class=""log-item"">"
 		 Write "<i class=""fa fa-file-alt""></i>"
-		 Write "<a href='zaxk.HSFiles.ShowFile.cls?file="_$ZCONVERT(file,"O","URL")_"' target=""_blank"">" _ file _ "</a>"
+		 Write "<a href='HSFiles.ShowFile.cls?file="_$ZCONVERT(file,"O","URL")_"' target=""_blank"">" _ file _ "</a>"
 		 Write "</li>"
 	}
 	Write "</form>"
