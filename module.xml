@@ -3,7 +3,8 @@
   <Document name="IrisFSRepoLog.ZPM">
     <Module>
       <Name>IrisFSRepoLog</Name>
-      <Version>1.0.0</Version>
+      <ExternalName>FHIRServerLogs</ExternalName>
+      <Version>1.0.1</Version>
       <Description>IrisFSRepoLog</Description>
       <Keywords>Terminal, COS</Keywords>
       <Packaging>module</Packaging>
