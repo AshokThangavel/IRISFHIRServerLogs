@@ -8,11 +8,11 @@ The viewer provides a web-based interface to monitor and inspect server-side act
 
 ## 🔍 Features
 
-- View FHIRServer repository logs
-- View FHIR Foundation logs
-- Simple, browser-based interface via CSP
-- Built on InterSystems IRIS
-- Dockerized for easy deployment
+- View FHIRServer repository logs.
+- View FHIR Foundation logs.
+- View FHIR validation server logs.
+- Simple, browser-based interface via CSP.
+- Built on InterSystems IRIS for Health.
 
 ## 🚀 How to Run
 
