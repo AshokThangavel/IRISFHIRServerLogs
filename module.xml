@@ -4,9 +4,9 @@
     <Module>
       <Name>IrisFSRepoLog</Name>
       <ExternalName>FHIRServerLogs</ExternalName>
-      <Version>1.0.2</Version>
+      <Version>1.0.3</Version>
       <Description>IrisFSRepoLog</Description>
-      <Keywords>Terminal, COS</Keywords>
+      <Keywords>FHIR, Logs, FHIR Foundation, FHIR Server</Keywords>
       <Packaging>module</Packaging>
       <Resource Name="HSFiles.PKG"/>
       <LifecycleClass>%IPM.Lifecycle.Module</LifecycleClass>
