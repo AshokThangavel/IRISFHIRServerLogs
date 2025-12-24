@@ -314,6 +314,7 @@ ClassMethod GetFilesInDirectory() As %Status
     While tResult.%Next() {
 	    Set fileNames(tResult.ItemName)=""
     }
+    Do ..FHIRValidationServerLog(.fileNames)
     Set fileNames("HS.Util.Installer.HSSYS-0.log")=""
 	Set fileNames("HS.Util.Installer.HSLIB-0.log")=""
 	Set fileNames("ensinstall.log")=""
@@ -331,6 +332,19 @@ ClassMethod GetFilesInDirectory() As %Status
 	}
 	Return response.%ToJSON()
 }
+ClassMethod FHIRValidationServerLog(ByRef fileName)
+{
+	New $Namespace
+	Set $Namespace="%SYS"
+	Do ##class(Config.Gateways).Exists("FHIR_Validation_Server",.fhirValidObj)
+    If $IsObject(fhirValidObj) {
+        Set fileName = fhirValidObj.LogFile
+        If fileName'="" {
+            Set fileName(fileName)=""
+        }
+    }
+}
+
 
 ClassMethod fileDetailsData(pFileName = "") As %String
 {
